@@ -9,15 +9,15 @@ node {
    stage ('Deploy to PCF') {  
     pushToCloudFoundry(
   target: 'api.system.dev.digifabricpcf.com',
-  organization: 'cde-product-integration',
-  cloudSpace: 'cde-product-integration',
   credentialsId: 'pcf-sa-creds',
+  organization: 'cde-product-integration',
+  cloudSpace: 'cde-product-integration',  
   manifestChoice: [
     value: 'jenkinsConfig',
     appName: 'java-maven-junit-helloworld',
     memory: 512,
     instances: 1,
-    appPath: 'target//java-maven-junit-helloworld.jar'
+    appPath: 'target/java-maven-junit-helloworld.jar'
   ]
 )
   }  

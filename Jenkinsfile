@@ -1,4 +1,4 @@
-env.dockerimagename="devopsbasservice/buildonframework:buildon-cf1"
+env.dockerimagename="devopsbasservice/buildonframework:buildon-cf2"
 node {
    stage ('Build') {
    //If some other Repository is to be given apart from current repo, provide git URL as below demo...
@@ -9,7 +9,7 @@ node {
    stage ('Deploy to PCF') {  
     pushToCloudFoundry(
   target: 'api.system.dev.digifabricpcf.com',
-  credentialsId: 'pcf-sa-creds',
+  credentialsId: 'pcfcreds',
   organization: 'cde-product-integration',
   cloudSpace: 'cde-product-integration',  
   manifestChoice: [

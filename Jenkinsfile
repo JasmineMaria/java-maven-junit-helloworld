@@ -1,4 +1,4 @@
-env.dockerimagename="devopsbasservice/buildonframework:buildon-cf1"
+env.dockerimagename="devopsbasservice/buildonframework:buildon-cf-plugin"
 node {
    stage ('Build') {
    //If some other Repository is to be given apart from current repo, provide git URL as below demo...

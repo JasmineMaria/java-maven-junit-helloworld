@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:    
+  name: <COMMIT_ID>  
+spec:
+  containers:
+    - name: <COMMIT_ID>
+      image: <image>
+      imagePullPolicy: IfNotPresent
+      env:
+      - name: commitID
+        value: <COMMIT_ID>
+      - name: branchName
+        value: <BRANCH_NAME>
+      - name: gitURL
+        value: <GIT_URL>
+      - name: KUBEMASTER
+        value: <KUBE_MASTER>
+      - name: UPLOADPORT
+        value: <UPLOADPORT>
+      - name: scmServiceAccount
+        value: <scmServiceAccount>          
+  restartPolicy: Never    
+  terminationGracePeriodSeconds: 30
+  affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "thisnode"
+                operator: In
+                values: ["slavelabel"]

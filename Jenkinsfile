@@ -15,9 +15,9 @@ node {
           artifact="target/projectName.packaging"
           artifactName="target/${projectName}.${packaging}"
       echo "artifact"
-      echo ${artifact}
+      echo artifact
       
       echo "artifactName"
-      echo ${artifactName}
+      echo artifactName
   }  
 }

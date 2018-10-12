@@ -6,19 +6,18 @@ node {
     sh 'mvn clean package -DskipTests=True'
   }   
    
-   stage ('Deploy to PCF') {  
-    pushToCloudFoundry(
-  target: 'api.system.dev.digifabricpcf.com',
-  credentialsId: 'pcfcreds',
-  organization: 'cde-product-integration',
-  cloudSpace: 'cde-product-integration',  
-  manifestChoice: [
-    value: 'jenkinsConfig',
-    appName: 'java-maven-junit-helloworld',
-    memory: 512,
-    instances: 1,
-    appPath: 'target/java-maven-junit-helloworld.jar'
-  ]
-)
+   stage ('Archive') {  
+       sh "mvn -B help:evaluate -Dexpression=project.build.finalName | grep -e '^[^[]' > finalNameFile"
+          projectName=readFile('finalNameFile').trim()
+
+          sh "mvn -B help:evaluate -Dexpression=project.packaging | grep -e '^[^[]' > packagingFile"
+          packaging=readFile('packagingFile').trim()
+          artifact="target/projectName.packaging"
+          artifactName="target/${projectName}.${packaging}"
+      echo "artifact"
+      echo ${artifact}
+      
+      echo "artifactName"
+      echo ${artifactName}
   }  
 }
